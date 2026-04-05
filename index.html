@@ -85,7 +85,7 @@
         .social-links-row {
             display: flex;
             gap: 1.25rem;
-            padding: 1rem 2rem 0 2rem;
+            padding: 1rem 2rem 2rem 4rem; 
         }
 
         .social-icon-link {
@@ -284,6 +284,77 @@
             animation: pulse 2s infinite;
         }
 
+        /* Contact Form Styles */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 500px;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem 0;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 13px;
+            transition: border-color 0.2s ease;
+            border-radius: 0; 
+            -webkit-appearance: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-bottom-color: var(--text-color);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+            padding-top: 0.5rem;
+        }
+
+        .contact-form button {
+            padding: 0.75rem 2rem;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--text-color);
+            font-family: inherit;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+            margin-top: 1rem;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
         @keyframes pulse {
             0% { opacity: 0.4; }
             50% { opacity: 1; box-shadow: 0 0 8px #00ff00; }
@@ -388,6 +459,17 @@
             <div class="nav-category nav-category-contact">
                 <div class="category-title">Contact</div>
                 
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="nav-link" data-target="panel-contact">
+                            <div>
+                                <span class="item-title-en">Biography</span>
+                                <span class="item-title-zh">简介与联系方式</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
                 <div class="social-links-row">
                     <a href="https://instagram.com/earthboundeva" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -423,13 +505,27 @@
                 <h2 class="content-title">Doppelgänger Mirror 二重身镜</h2>
                 <div class="content-subtitle">Project / Hangzhou, 2020</div>
                 
-                <div class="content-image">[ Placeholder Image 1 ]</div>
-                <div class="content-image">[ Placeholder Image 2 ]</div>
+                <div class="content-image" style="background-image: url('img/mirror.jpg'); background-size: cover; background-position: center;"></div>
                 
                 <div class="content-body">
-                    <p>This is placeholder text for the Doppelgänger Mirror. You can replace this text with your actual project description. Discuss the curation process, the artists involved, and the conceptual framework of the exhibition.</p>
-                    <p>这是“二重身镜”展览的占位文本。您可以将其替换为实际的项目描述。讨论策展过程、参与的艺术家以及展览的概念框架。</p>
+                    <p>Doppelgänger Mirror is an interactive kinetic installation that investigates the act of looking through a mirror that appears to look back.</p>
+                    <p>Drawing from folklore and psychoanalysis, the work evokes the notion of the doppelgänger—an invisible, often ominous double—to question how we observe and construct ourselves in contemporary digital times.</p>
+                    <p>Interaction begins simply: the viewer’s face is tracked and mirrored. But over time, the mirror develops an unpredictable rhythm, occasionally disrupting the synchronicity between gesture and response. In this shift, Doppelgänger Mirror transforms from a passive surface into an autonomous performer.</p>
+                    <p>动态装置作品《二重身镜》探究了“凝视”的本质，即当一面镜子开始回望观者。</p>
+                    <p>作品糅合民俗传说与精神分析理论，借德语“二重身”（Doppelgänger），即预示不祥的隐形复体，叩问数字时代中自我观察与身份构建的悖论。</p>
+                    <p>作品的互动始于镜像反射：观众的面部被追踪复现。但镜子逐渐生成不可预测的律动，打破动作与反馈的同步性，使《二重身镜》从被动介质蜕变为自主主体。</p>
                 </div>
+
+                <div class="content-image" style="background-image: url('img/mirror_detail.jpg'); background-size: cover; background-position: center;"></div>
+
+                <div class="content-body">
+                    <p>The work centers around a motorized mirror embedded in a transparent mechanical frame. Through face tracking and real-time servo control, the mirror responds to the viewer’s head movements—tilting, rotating, and shifting in depth—as if it possessed its own instinct to observe. Rather than reflecting a static image, the mirror acts as a living presence, mimicking or deflecting gestures in ways that are at times playful, at times unsettling.</p>
+                    <p>By blurring the line between viewing and being viewed, reflection and reaction, Doppelgänger Mirror invites a reconsideration of the familiar gesture of looking into a mirror. It explores how subtle shifts in material, timing, and responsiveness can transform a common interface into a site of ambiguity, estrangement, and quiet confrontation.</p>
+                    <p>二重身镜》的核心是嵌于透明机械框架的电机驱动镜面。通过实时面部追踪与伺服控制，镜体随观者头部倾斜、旋转、进退，宛如觉醒的观察者。它拒斥静态倒影，以模仿或偏离的姿态构筑机械生命性，在戏谑与不安间挑战人类权威。</p>
+                    <p>当观看与被观看的边界瓦解，作品迫使观者重审“照镜”这一仪式。通过材质异变与响应延迟，日常界面转化为自我对峙的场域——在这里，人与技术互为“二重身”，在无声角力中暴露数字时代的存在性焦虑。</p>
+                </div>
+
+                <div class="content-image" style="background-image: url('img/mirror2.jpg'); background-size: cover; background-position: center;"></div>
             </div>
 
             <div id="panel-proj-2" class="content-panel">
@@ -467,11 +563,28 @@
                 <div class="content-subtitle">联系方式与个人简介</div>
                 
                 <div class="content-body">
-                    <p>CHE Yiwen is a Chinese / international creative agent, producer, and cultural connector working at the intersection of contemporary art, design, and commerce.</p>
-                    <p>车艺文是一名独立创意经纪人与制作人，活跃于当代艺术、设计与商业的交汇领域。</p>
-                    
+                    <p>CHE Yiwen: creative agent, producer, and cultural connector working at the intersection of contemporary art, design, and tech.</p>
+                    <p>车艺文：创意经纪人、制片人和文化联络人，致力于当代艺术、设计和科技的交叉领域。</p>
+
                     <br>
-                    <p><strong>Email:</strong> <a href="mailto:hello@cheyiwen.com">hello@cheyiwen.com</a></p>
+                    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name 姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email 邮箱</label>
+                            <input type="email" id="email" name="_replyto" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message 留言</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit">Send Message 发送</button>
+                    </form>
                 </div>
             </div>
 
