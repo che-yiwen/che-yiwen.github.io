@@ -12,8 +12,6 @@
             --border-color: #e0e0e0;
             --hover-bg: #f0f0f0;
             --active-bg: #e8e8e8;
-            --canvas-bg: #050505; /* Deep black for the interactive section */
-            --canvas-line: rgba(255, 255, 255, 0.15);
         }
 
         * {
@@ -217,12 +215,12 @@
             max-width: none !important;
             padding: 0 !important;
             height: 100%;
-            background-color: var(--canvas-bg);
             position: relative;
             overflow: hidden;
+            background-color: #000;
         }
 
-        /* Background Image Layer */
+        /* Static Background Image Layer */
         .landing-bg-image {
             position: absolute;
             top: 0;
@@ -232,132 +230,7 @@
             background-size: cover;
             background-position: center;
             z-index: 0;
-            opacity: 0.6;
-            /* Scale it up slightly so when it shifts, we don't see the edges */
-            transform: scale(1.05); 
-            will-change: transform;
-        }
-
-        /* Dark gradient overlay */
-        .landing-bg-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(5,5,5,0.2) 0%, rgba(5,5,5,0.4) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            z-index: 1;
-        }
-
-        .landing-overlay {
-            position: absolute;
-            bottom: 3rem;
-            right: 3rem;
-            z-index: 2;
-            color: rgba(255, 255, 255, 0.2);
-            font-family: monospace;
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            text-align: right;
-            pointer-events: none; /* Allows mouse interactions to pass through to canvas */
-        }
-
-        .landing-overlay .status-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background-color: #00ff00;
-            border-radius: 50%;
-            margin-right: 8px;
-            animation: pulse 2s infinite;
-        }
-
-        /* Contact Form Styles */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            max-width: 500px;
-            margin-top: 2rem;
-            padding-top: 2rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-size: 11px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.75rem 0;
-            background-color: transparent;
-            border: none;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-family: inherit;
-            font-size: 13px;
-            transition: border-color 0.2s ease;
-            border-radius: 0; 
-            -webkit-appearance: none;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-bottom-color: var(--text-color);
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 100px;
-            padding-top: 0.5rem;
-        }
-
-        .contact-form button {
-            padding: 0.75rem 2rem;
-            background-color: transparent;
-            color: var(--text-color);
-            border: 1px solid var(--text-color);
-            font-family: inherit;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            align-self: flex-start;
-            margin-top: 1rem;
-        }
-
-        .contact-form button:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; box-shadow: 0 0 8px #00ff00; }
-            100% { opacity: 0.4; }
+            opacity: 1;
         }
 
         /* Mobile Adjustments */
@@ -382,10 +255,6 @@
             }
             .content-panel {
                 padding: 2rem 1.5rem;
-            }
-            .landing-overlay {
-                bottom: 1.5rem;
-                right: 1.5rem;
             }
         }
     </style>
@@ -413,73 +282,19 @@
                             <span class="item-year">2020</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="panel-proj-2">
-                            <div>
-                                <span class="item-title-en">Placeholder</span>
-                                <span class="item-title-zh">占位符</span>
-                            </div>
-                            <span class="item-year">XXXX</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="nav-category">
-                <div class="category-title">Talks, Lectures & Workshops</div>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="panel-talk-1">
-                            <div>
-                                <span class="item-title-en">Placeholder</span>
-                                <span class="item-title-zh">占位符</span>
-                            </div>
-                            <span class="item-year">XXXX</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="nav-category">
-                <div class="category-title">Design</div>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="panel-design-1">
-                            <div>
-                                <span class="item-title-en">Placeholder</span>
-                                <span class="item-title-zh">占位符</span>
-                            </div>
-                            <span class="item-year">XXXX</span>
-                        </a>
-                    </li>
-                </ul>
+                    
+                    </ul>
             </div>
 
             <div class="nav-category nav-category-contact">
                 <div class="category-title">Contact</div>
                 
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="panel-contact">
-                            <div>
-                                <span class="item-title-en">Biography</span>
-                                <span class="item-title-zh">简介与联系方式</span>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-
                 <div class="social-links-row">
                     <a href="https://instagram.com/earthboundeva" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Facebook">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                         </svg>
                     </a>
                     <a href="https://linkedin.com/in/cheyiwen" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="LinkedIn">
@@ -497,7 +312,6 @@
             
             <div id="panel-default" class="content-panel active landing-panel">
                 <div class="landing-bg-image" style="background-image: url('img/mirror.jpg');"></div>
-                <canvas id="hero-canvas"></canvas>
             </div>
 
             <div id="panel-proj-1" class="content-panel">
@@ -527,67 +341,7 @@
                 <div class="content-image" style="background-image: url('img/mirror2.jpg'); background-size: cover; background-position: center;"></div>
             </div>
 
-            <div id="panel-proj-2" class="content-panel">
-                <h2 class="content-title">Digital Flora 数字植物</h2>
-                <div class="content-subtitle">Interactive Installation / Shenzhen, 2024</div>
-                
-                <div class="content-image">[ Placeholder Image ]</div>
-                
-                <div class="content-body">
-                    <p>Placeholder text for the Digital Flora project. Describe the technological and artistic intersection of this project.</p>
-                </div>
-            </div>
-
-            <div id="panel-talk-1" class="content-panel">
-                <h2 class="content-title">The Future of Curation 策展的未来</h2>
-                <div class="content-subtitle">Guest Lecture / Central Academy of Fine Arts, 2023</div>
-                <div class="content-body">
-                    <p>Placeholder text for the lecture. Include a summary of the topics discussed, links to video recordings, or presentation slides.</p>
-                </div>
-            </div>
-
-            <div id="panel-design-1" class="content-panel">
-                <h2 class="content-title">Visual Identity System 视觉识别系统</h2>
-                <div class="content-subtitle">Brand Design / 2023</div>
-                
-                <div class="content-image">[ Design Spec Image 1 ]</div>
-                
-                <div class="content-body">
-                    <p>Placeholder text for the design project. Detail the client brief, your creative approach, and the final deliverables.</p>
-                </div>
-            </div>
-
-            <div id="panel-contact" class="content-panel">
-                <h2 class="content-title">Contact & Biography</h2>
-                <div class="content-subtitle">联系方式与个人简介</div>
-                
-                <div class="content-body">
-                    <p>CHE Yiwen: creative agent, producer, and cultural connector working at the intersection of contemporary art, design, and tech.</p>
-                    <p>车艺文：创意经纪人、制片人和文化联络人，致力于当代艺术、设计和科技的交叉领域。</p>
-
-                    <br>
-                    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name 姓名</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email 邮箱</label>
-                            <input type="email" id="email" name="_replyto" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message 留言</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        
-                        <button type="submit">Send Message 发送</button>
-                    </form>
-                </div>
-            </div>
-
-        </main>
+            </main>
     </div>
 
     <script>
@@ -625,146 +379,6 @@
                 });
             });
         });
-    </script>
-
-    <script>
-        const canvas = document.getElementById('hero-canvas');
-        const ctx = canvas.getContext('2d');
-        const container = canvas.parentElement;
-        const bgImage = document.querySelector('.landing-bg-image');
-        
-        let width, height;
-        let points = [];
-        const spacing = 45; 
-        let mouse = { x: -1000, y: -1000 };
-        
-        // Canvas interaction settings
-        const interactionRadius = 200; 
-        const repulsionForce = 0.8;    
-        const returnSpeed = 0.08;      
-
-        // NEW: Parallax smoothing variables (Lerp)
-        let targetParallaxX = 0;
-        let targetParallaxY = 0;
-        let currentParallaxX = 0;
-        let currentParallaxY = 0;
-        const parallaxEase = 0.05; // Lower is slower/smoother, higher is faster
-
-        function resize() {
-            width = container.clientWidth;
-            height = container.clientHeight;
-            canvas.width = width;
-            canvas.height = height;
-            initMesh();
-        }
-
-        function initMesh() {
-            points = [];
-            const cols = Math.ceil(width / spacing) + 2;
-            const rows = Math.ceil(height / spacing) + 2;
-
-            for (let i = -1; i < rows; i++) {
-                for (let j = -1; j < cols; j++) {
-                    const x = j * spacing;
-                    const y = i * spacing;
-                    points.push({
-                        x: x, y: y,
-                        ox: x, oy: y, 
-                        vx: 0, vy: 0  
-                    });
-                }
-            }
-        }
-
-        container.addEventListener('mousemove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = e.clientX - rect.left;
-            mouse.y = e.clientY - rect.top;
-
-            // Update target parallax positions
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            // The 0.04 multiplier dictates how far the image moves overall
-            targetParallaxX = (mouse.x - centerX) * -0.04; 
-            targetParallaxY = (mouse.y - centerY) * -0.04;
-        });
-
-        container.addEventListener('mouseleave', () => {
-            mouse.x = -1000;
-            mouse.y = -1000;
-
-            // Reset parallax to center smoothly
-            targetParallaxX = 0;
-            targetParallaxY = 0;
-        });
-
-        function animate() {
-            if(container.classList.contains('active')) {
-                // 1. Handle Background Parallax Smoothly
-                if (bgImage) {
-                    // Ease the current position towards the target position
-                    currentParallaxX += (targetParallaxX - currentParallaxX) * parallaxEase;
-                    currentParallaxY += (targetParallaxY - currentParallaxY) * parallaxEase;
-                    
-                    bgImage.style.transform = `scale(1.05) translate(${currentParallaxX}px, ${currentParallaxY}px)`;
-                }
-
-                // 2. Handle Mesh Canvas
-                ctx.clearRect(0, 0, width, height);
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-                ctx.lineWidth = 1;
-
-                const cols = Math.ceil(width / spacing) + 2;
-
-                for (let i = 0; i < points.length; i++) {
-                    const p = points[i];
-
-                    const dx = mouse.x - p.x;
-                    const dy = mouse.y - p.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < interactionRadius) {
-                        const force = (interactionRadius - dist) / interactionRadius;
-                        const angle = Math.atan2(dy, dx);
-                        
-                        p.vx -= Math.cos(angle) * force * repulsionForce;
-                        p.vy -= Math.sin(angle) * force * repulsionForce;
-                    }
-
-                    p.vx += (p.ox - p.x) * returnSpeed;
-                    p.vy += (p.oy - p.y) * returnSpeed;
-
-                    p.vx *= 0.85;
-                    p.vy *= 0.85;
-
-                    p.x += p.vx;
-                    p.y += p.vy;
-                }
-
-                ctx.beginPath();
-                for (let i = 0; i < points.length; i++) {
-                    const p = points[i];
-                    
-                    if ((i + 1) % cols !== 0 && i + 1 < points.length) {
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(points[i + 1].x, points[i + 1].y);
-                    }
-                    
-                    if (i + cols < points.length) {
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(points[i + cols].x, points[i + cols].y);
-                    }
-                }
-                ctx.stroke();
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', resize);
-        
-        resize();
-        animate();
     </script>
 </body>
 </html>
