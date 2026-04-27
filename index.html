@@ -187,25 +187,88 @@
             margin-bottom: 3rem;
         }
 
+        .content-subtitle a {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
         .content-body p {
             margin-bottom: 1.5rem;
             font-size: 14px;
             line-height: 1.6;
         }
 
-        .content-image {
-            width: 100%;
-            height: auto;
-            background-color: #eee;
-            margin-bottom: 2rem;
-            aspect-ratio: 16 / 9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 12px;
-            text-transform: uppercase;
-        }
+        /* ---- 基础图片容器 (保持不变) ---- */
+.content-image {
+    width: 100%;
+    height: auto;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* 独立使用单张图片时的底部间距 (保持不变) */
+.content-image.standalone {
+    margin-bottom: 1.5rem;
+}
+
+/* ---- 🌟 新的纵横比控制类 (精确控制) ---- */
+/* 横图 */
+.ratio-16x9 {
+    aspect-ratio: 16 / 9;
+}
+
+.ratio-3x2 {
+    aspect-ratio: 3 / 2;
+}
+
+/* 竖图 */
+.ratio-3x4 {
+    aspect-ratio: 3 / 4;
+}
+
+.ratio-2x3 {
+    aspect-ratio: 2 / 3;
+}
+
+/* ---- 限制单张竖图的宽度 (更新类名) ---- */
+.content-image.standalone.ratio-3x4,
+.content-image.standalone.ratio-2x3 {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .content-image.standalone.ratio-3x4,
+    .content-image.standalone.ratio-2x3 {
+        max-width: 100%;
+    }
+}
+
+/* ---- 多图并排容器 (保持不变) ---- */
+.image-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.image-row .content-image {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .image-row {
+        flex-direction: column;
+    }
+}
+        
+        
 
         .landing-panel {
             max-width: none !important;
@@ -267,9 +330,30 @@
             </div>
 
             <div class="nav-category">
-                <div class="category-title">Projects & Exhibitions</div>
+                <div class="category-title">Projects & Programs</div>
                 <ul class="nav-list">
                     <li class="nav-item">
+                        <a class="nav-link" data-target="panel-proj-4">
+                            <div>
+                                <span class="item-title-en">The Grammar of Agency</span>
+                                <span class="item-title-zh">能动性的语法</span>
+                            </div>
+                            <span class="item-year">2026</span>
+                        </a>
+                        <a class="nav-link" data-target="panel-proj-3">
+                            <div>
+                                <span class="item-title-en">Frames of Time</span>
+                                <span class="item-title-zh">时间之帧</span>
+                            </div>
+                            <span class="item-year">2025</span>
+                        </a>
+                        <a class="nav-link" data-target="panel-proj-2">
+                            <div>
+                                <span class="item-title-en">AI, Pan-Technology & Art</span>
+                                <span class="item-title-zh">AI，泛技术与艺术</span>
+                            </div>
+                            <span class="item-year">2021</span>
+                        </a>
                         <a class="nav-link" data-target="panel-proj-1">
                             <div>
                                 <span class="item-title-en">Doppelgänger Mirror</span>
@@ -304,29 +388,69 @@
             </div>
         </nav>
 
+
+
         <main class="content-area">
             
             <div id="panel-default" class="content-panel active landing-panel">
                 <div class="landing-bg-image" style="background-image: url('img/mirror.jpg');"></div>
             </div>
 
-            <div id="panel-proj-1" class="content-panel">
-                <h2 class="content-title">Doppelgänger Mirror 二重身镜</h2>
-                <div class="content-subtitle">Project / Hangzhou, 2020</div>
-                
-                <div class="content-image" style="background-image: url('img/mirror.jpg'); background-size: cover; background-position: center;"></div>
-                
+
+            <div id="panel-proj-4" class="content-panel">
+                <h2 class="content-title">The Grammar of Agency<br>能动性的语法</h2>
+                <div class="content-subtitle">A series of interactive installations<br>Dimensions variable<br>Contributing the <a href="https://hope4hope.at/">Group Exhibition <i>Hope 4 Hope: Cross Disciplinary Investigations </i></a>
+                    <br>Donau Festival, Krems an der Donau, 2026 </div>
+                <div class="content-image standalone ratio-16x9" style="background-image: url('img/The Grammar of Agency_Hand_2.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="content-body">
-                    <p>Doppelgänger Mirror is an interactive kinetic installation that investigates the act of looking through a mirror that appears to look back.</p>
-                    <p>Drawing from folklore and psychoanalysis, the work evokes the notion of the doppelgänger—an invisible, often ominous double—to question how we observe and construct ourselves in contemporary digital times.</p>
-                    <p>Interaction begins simply: the viewer’s face is tracked and mirrored. But over time, the mirror develops an unpredictable rhythm, occasionally disrupting the synchronicity between gesture and response. In this shift, Doppelgänger Mirror transforms from a passive surface into an autonomous performer.</p>
-                    <p>动态装置作品《二重身镜》探究了“凝视”的本质，即当一面镜子开始回望观者。</p>
-                    <p>作品糅合民俗传说与精神分析理论，借德语“二重身”（Doppelgänger），即预示不祥的隐形复体，叩问数字时代中自我观察与身份构建的悖论。</p>
-                    <p>作品的互动始于镜像反射：观众的面部被追踪复现。但镜子逐渐生成不可预测的律动，打破动作与反馈的同步性，使《二重身镜》从被动介质蜕变为自主主体。</p>
+                    <p>This collection of Interactive Installations comprises three subjects that step out of the passive role of being mere “objects.” They refuse to simply absorb a passing glance or wait to be looked at; instead, they actively extend an invitation for you to engage. Here, a hand reaches out to connect, the plant breaks its silence to speak with those who touch it, and time itself adjusts its pace to the physical weight you apply.</p>
+                    <p>Hope is no longer a state of waiting (intransitive); it is a necessary, directional intervention (transitive) seeking connection. Technology acts not as ornament, but as the “syntax” bridging subject and object, inviting a dialogue and enabling the material world to reach out and answer you back.</p>
+                    <p>这组作品包含三个截然不同的主体。在这个空间里，它们走出了作为纯粹“宾语”的被动角色。它们拒绝仅仅承接人们的注视或一瞥；相反，它们主动向你发出了交互的邀请。在这里，一只隐藏的手会主动伸出与你击掌，植物会打破沉默与触碰它的人对话，而时间本身也会根据你施加的重压来调整它的步调。</p>
+                    <p>希望不再是一种等待（不及物），而是一场必须发生的、渴望建立连接的干预（及物）。在此语境下，技术并非装饰，而是连接主体与客体的“句法”，它促成了一场对话，并让物质世界能够主动伸出手，给予你回应。</p>
+                    <p><br>***<br>Technical Support 技术支持<br>Niklas Burger</p>
                 </div>
+                <div class="image-row">
+                    <div class="content-image ratio-2x3" style="background-image: url('img/The Grammar of Agency_Hand_4.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-2x3" style="background-image: url('img/The Grammar of Agency_Hand_5.jpg'); background-size: cover; background-position: center;"></div>
+                </div>
+                <div class="content-image standalone ratio-3x2" style="background-image: url('img/The Grammar of Agency_Clock_2.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="image-row">
+                    <div class="content-image ratio-2x3" style="background-image: url('img/The Grammar of Agency_Clock_1.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-2x3" style="background-image: url('img/The Grammar of Agency_Clock_3.jpg'); background-size: cover; background-position: center;"></div>
+                </div>
+            </div>
 
+
+            <div id="panel-proj-3" class="content-panel">
+                <h2 class="content-title">Frames of Time<br>时间之帧</h2>
+                <div class="content-subtitle">Interactive installation<br>Dimensions variable<br>Angewandte Festival, Vienna, 2025</div>
+                <div class="content-image standalone ratio-16x9" style="background-image: url('img/Frames of Time_1.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="content-body">
+                    <p>Frames of Time captures suspended moments across timezones through layered transparent sheets. Each layer holds erased chat screenshots—only timestamps and “read” symbols remain. When you approach, gentle lights awaken these fragments, casting dancing shadows of vanished conversations. In this glow, a distant friend’s “Good morning” meets the sleepless night. Though words disappear, each illuminated <i>read</i> becomes a silent hand reaching across oceans. Your presence gathers these digital embraces, making absences resonate with the quiet comfort of knowing others are awake in the world’s scattered night.</p>
+                    <p>Confusion we suspended, that they might seed through time: a <i>read</i> symbol pulsing in predark stillness, moonlit “typing…” ellipses, dream-softened replies, all unfurling now in this half-light, tendrils of care stretching from the erased spaces to brush your cheek with borrowed warmth.</p>
+                    <p>《时间之帧》通过层叠的透明介质，捕捉了跨越时区、悬而未决的瞬间。每一层都承载了被抹去的对话——仅剩下了时间戳与“已读”标记。当你靠近，柔光唤醒了这些碎片，让消逝对话的残影翩跹起舞。在这光晕里，远方友人的“早安”邂逅了此地的彻夜未眠。尽管言语消散，每一个亮起的“已读”都化作一只跨越重洋的无声执手。你的存在汇聚了这些数字拥抱，令“缺席”在宁静的慰藉中回响——让你感受到，在这世界散落的深夜里，有人正与你一同清醒。</p>
+                    <p>那些被我们悬置的迷惘，在时间的缝隙里生根发芽：黎明前寂静中律动的“已读”符号，月色下闪烁的“正在输入……”，还有如梦似幻的轻柔回响，此刻皆在微光中徐徐舒展。关怀的纤须从被抹除的空间向外延展，带着借来的温存，轻拂你的脸颊。</p>
+                </div>
+                <div class="image-row">
+                    <div class="content-image ratio-3x4" style="background-image: url('img/Frames of Time_Poster.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/Frames of Time_2.jpg'); background-size: cover; background-position: center;"></div>
+                </div>
+                <div class="image-row">
+                    <div class="content-image ratio-3x4" style="background-image: url('img/Frames of Time_4.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/Frames of Time_6.jpg'); background-size: cover; background-position: center;"></div>
+                </div>
+            </div>
+
+
+            <div id="panel-proj-2" class="content-panel">
+                <h2 class="content-title">AI, Pan-Technology and Art<br>AI，泛技术与艺术</h2>
+                <div class="content-subtitle">Public Education Program<br> West Bund Museum, Shanghai, 2021</div>
+                <div class="content-image standalone ratio-16x9" style="background-image: url('img/ai pantech and art_banner.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="content-body">
+                    <p>On the occasion of the 4th World AI Conference 2021, West Bund Museum, as one of the core venues of the Museum Mile, launched a public program—AI, Pan-Technology & Art. The program aims to showcase the crossover between art and technology in a multi-dimensional manner through the perspective of new media art, with a series of 12 events, including screenings, audio-visual performances, workshops, talks, along with School of Design & Innovation, China Academy of Art and Chronus Art Center, bring together distinguished scholars, curators and artists to discussion, inviting the public to dialogue and experience the new sensations about artificial intelligence and art.</p>
+                    <p>西岸美术馆作为西岸“美术馆大道”的核心场馆之一，在2021年第四届世界人工智能大会举办之际，演绎AI与ART交织的精彩篇章，推出双A系列活动“AI、泛技术与艺术”，以新媒体艺术为切入点，开展12场形式多样的活动，包含跨媒介影像、现场展演、工作坊与系列讲座等，多角度展示艺术与科技的跨界与交融，并与中国美术学院创新设计学院、CAC新时线媒体艺术中心联合知名学者、策展人、艺术家发起探讨，邀请公众一同与科技对话、与艺术同舞，感受人工智能与艺术双向赋能的全新体验。</p>
+                </div>
                 <div class="content-image" style="background-image: url('img/mirror_detail.jpg'); background-size: cover; background-position: center;"></div>
-
                 <div class="content-body">
                     <p>The work centers around a motorized mirror embedded in a transparent mechanical frame. Through face tracking and real-time servo control, the mirror responds to the viewer’s head movements—tilting, rotating, and shifting in depth—as if it possessed its own instinct to observe. Rather than reflecting a static image, the mirror acts as a living presence, mimicking or deflecting gestures in ways that are at times playful, at times unsettling.</p>
                     <p>By blurring the line between viewing and being viewed, reflection and reaction, Doppelgänger Mirror invites a reconsideration of the familiar gesture of looking into a mirror. It explores how subtle shifts in material, timing, and responsiveness can transform a common interface into a site of ambiguity, estrangement, and quiet confrontation.</p>
@@ -335,6 +459,24 @@
                 </div>
 
                 <div class="content-image" style="background-image: url('img/mirror2.jpg'); background-size: cover; background-position: center;"></div>
+            </div>
+
+            <div id="panel-proj-1" class="content-panel">
+                <h2 class="content-title">Doppelgänger Mirror<br>二重身镜</h2>
+                <div class="content-subtitle">Graduation Project, China Academy of Art, Hangzhou, 2020</div>
+                <div class="content-image standalone ratio-3x2" style="background-image: url('img/Mirror_1.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="content-body">
+                    <p>Doppelgänger Mirror is an interactive kinetic installation that investigates the act of looking through a mirror that appears to look back. Drawing from folklore and psychoanalysis, the work evokes the notion of the doppelgänger—an invisible, often ominous double—to question how we observe and construct ourselves in contemporary digital times. Interaction begins simply: the viewer’s face is tracked and mirrored. But over time, the mirror develops an unpredictable rhythm, occasionally disrupting the synchronicity between gesture and response. In this shift, Doppelgänger Mirror transforms from a passive surface into an autonomous performer.</p>
+                    <p>The work centers around a motorized mirror embedded in a transparent mechanical frame. Through face tracking and real-time servo control, the mirror responds to the viewer’s head movements—tilting, rotating, and shifting in depth—as if it possessed its own instinct to observe. Rather than reflecting a static image, the mirror acts as a living presence, mimicking or deflecting gestures in ways that are at times playful, at times unsettling.</p>
+                    <p>By blurring the line between viewing and being viewed, reflection and reaction, Doppelgänger Mirror invites a reconsideration of the familiar gesture of looking into a mirror. It explores how subtle shifts in material, timing, and responsiveness can transform a common interface into a site of ambiguity, estrangement, and quiet confrontation.</p>
+                    <p>作品的互动始于镜像反射：观众的面部被追踪复现。但镜子逐渐生成不可预测的律动，打破动作与反馈的同步性，使《二重身镜》从被动介质蜕变为自主主体。</p>
+                    <p>《二重身镜》的核心是嵌于透明机械框架的电机驱动镜面。通过实时面部追踪与伺服控制，镜体随观者头部倾斜、旋转、进退，宛如觉醒的观察者。它拒斥静态倒影，以模仿或偏离的姿态构筑机械生命性，在戏谑与不安间挑战人类权威。</p>
+                    <p>当观看与被观看的边界瓦解，作品迫使观者重审“照镜”这一仪式。通过材质异变与响应延迟，日常界面转化为自我对峙的场域——在这里，人与技术互为“二重身”，在无声角力中暴露数字时代的存在性焦虑。</p>
+                </div>
+                <div class="image-row">
+                    <div class="content-image ratio-2x3" style="background-image: url('img/Mirror_2.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-2x3" style="background-image: url('img/Mirror_3.jpg'); background-size: cover; background-position: center;"></div>
+                </div>
             </div>
 
             </main>
