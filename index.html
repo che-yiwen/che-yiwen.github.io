@@ -44,22 +44,34 @@
             width: 100vw;
         }
 
-        /* Left Sidebar - Navigation */
+        /* Left Sidebar - Navigation Framework */
         .sidebar {
-            flex: 0 0 42vw;
-            border-right: 1px solid var(--border-color);
-            overflow-y: auto;
-            padding: 2rem 0;
+            flex: 0 0 33.33vw; /* 💡占据视口宽度的1/3 */
+            border-right: none; 
+            padding: 2rem 0 0 0; 
             display: flex;
             flex-direction: column;
             background-color: var(--bg-color);
             z-index: 10;
         }
 
+        /* Sidebar Scroll Area */
+        .sidebar-scroll {
+            flex: 1;
+            overflow-y: auto; 
+            padding-bottom: 2rem;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+
+        .sidebar-scroll::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/WebKit */
+        }
+
         .site-header {
             padding: 0 2rem 4rem 2rem;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: bold; 
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
@@ -73,43 +85,15 @@
 
         /* Navigation Categories */
         .nav-category {
-            margin-bottom: 2rem;
-        }
-
-        /* Contact Section & Social Icons */
-        .nav-category-contact {
-            margin-top: auto; /* Pushes the contact section to the bottom of the sidebar */
-        }
-
-        .social-links-row {
-            display: flex;
-            gap: 1.25rem;
-            padding: 1rem 2rem 2rem 2rem; 
-        }
-
-        .social-icon-link {
-            color: var(--text-muted);
-            transition: color 0.2s ease, transform 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-icon-link:hover {
-            color: var(--text-color);
-            transform: translateY(-2px);
-        }
-
-        .social-icon-link svg {
-            width: 16px;
-            height: 16px;
+            margin-bottom: 1.5rem;
         }
 
         .category-title {
             padding: 0 2rem 0.5rem 2rem;
             font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            margin-bottom: 0rem; 
+            font-weight: bold; 
         }
 
         .nav-list {
@@ -120,10 +104,11 @@
             display: block;
         }
 
-        .nav-link, .nav-link-external {
+        .nav-link, 
+        .nav-link-external {
             display: flex;
             justify-content: space-between;
-            padding: 0.5rem 2rem;
+            padding: 0.25rem 2rem;
             transition: background-color 0.2s ease;
         }
 
@@ -140,14 +125,64 @@
             display: block;
             font-size: 12px;
             color: var(--text-muted);
-            margin-top: 2px;
+            margin-top: 1px;
             font-weight: 400;
         }
 
         .item-year {
             font-size: 11px;
-            color: var(--text-muted);
-            padding-top: 2px;
+            color: var(--text-color);
+            padding-top: 1px;
+        }
+
+        /* Fixed Footer (Contact & Copyright) */
+        .sidebar-footer {
+            padding: 1.5rem 0 1.25rem 0; 
+            background-color: var(--bg-color);
+            border-top: none; 
+            margin-top: auto; 
+        }
+
+        .sidebar-footer .category-title {
+            padding-bottom: 0px; 
+        }
+
+        .sidebar-footer .nav-link {
+            padding-top: 0px;    
+            padding-bottom: 0px; 
+        }
+
+        .sidebar-footer .nav-category {
+            margin-bottom: 0rem; 
+        }
+
+        .sidebar-footer .nav-link:hover .item-title-en {
+            font-weight: bold; 
+            color: #1a1a1a; 
+        }
+
+        .sidebar-footer .nav-link:hover {
+            background-color: transparent; 
+        }
+
+        .copyright-info {
+            padding: 1rem 2rem 0 2rem; 
+            font-size: 11px;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+
+        /* Panel Adjustments */
+        #panel-about .content-body p {
+            padding-left: 4rem;  
+            padding-right: 4rem; 
+        }
+
+        @media (max-width: 768px) {
+            #panel-about .content-body p {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
 
         /* Right Content Area */
@@ -186,10 +221,18 @@
             font-size: 14px;
             margin-bottom: 3rem;
         }
+      
+        .content-subtitle a,
+        .content-body a {
+            color: #5D8AA8; 
+            text-decoration: underline; 
+            text-underline-offset: 3px; 
+        }
 
-        .content-subtitle a {
-            color: var(--text-muted);
-            font-size: 14px;
+        .content-subtitle a:hover,
+        .content-body a:hover {
+            color: #4C516D; 
+            text-decoration-thickness: 2px; 
         }
 
         .content-body p {
@@ -197,78 +240,46 @@
             font-size: 14px;
             line-height: 1.6;
         }
-
-        /* ---- 基础图片容器 (保持不变) ---- */
-.content-image {
-    width: 100%;
-    height: auto;
-    background-color: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    font-size: 12px;
-    text-transform: uppercase;
-}
-
-/* 独立使用单张图片时的底部间距 (保持不变) */
-.content-image.standalone {
-    margin-bottom: 1.5rem;
-}
-
-/* ---- 🌟 新的纵横比控制类 (精确控制) ---- */
-/* 横图 */
-.ratio-16x9 {
-    aspect-ratio: 16 / 9;
-}
-
-.ratio-3x2 {
-    aspect-ratio: 3 / 2;
-}
-
-/* 竖图 */
-.ratio-3x4 {
-    aspect-ratio: 3 / 4;
-}
-
-.ratio-2x3 {
-    aspect-ratio: 2 / 3;
-}
-
-/* ---- 限制单张竖图的宽度 (更新类名) ---- */
-.content-image.standalone.ratio-3x4,
-.content-image.standalone.ratio-2x3 {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (max-width: 768px) {
-    .content-image.standalone.ratio-3x4,
-    .content-image.standalone.ratio-2x3 {
-        max-width: 100%;
-    }
-}
-
-/* ---- 多图并排容器 (保持不变) ---- */
-.image-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    width: 100%;
-}
-
-.image-row .content-image {
-    flex: 1;
-}
-
-@media (max-width: 768px) {
-    .image-row {
-        flex-direction: column;
-    }
-}
         
-        
+        /* Image Containers */
+        .content-image {
+            width: 100%;
+            height: auto;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .content-image.standalone {
+            margin-bottom: 1.5rem;
+        }
+
+        .ratio-16x9 { aspect-ratio: 16 / 9; }
+        .ratio-3x2 { aspect-ratio: 3 / 2; }
+        .ratio-3x4 { aspect-ratio: 3 / 4; }
+        .ratio-2x3 { aspect-ratio: 2 / 3; }
+
+        .content-image.standalone.ratio-3x4,
+        .content-image.standalone.ratio-2x3 {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .image-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .image-row .content-image {
+            flex: 1;
+        }
 
         .landing-panel {
             max-width: none !important;
@@ -279,7 +290,6 @@
             background-color: #000;
         }
 
-        /* Static Background Image Layer */
         .landing-bg-image {
             position: absolute;
             top: 0;
@@ -306,14 +316,20 @@
                 flex: none;
                 width: 100%;
                 border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                padding: 1rem 0;
+                border-bottom: none; 
+                padding: 1rem 0 0 0;
+            }
+            .sidebar-scroll {
+                overflow-y: visible; 
             }
             .content-area {
                 min-height: 80vh;
             }
             .content-panel {
                 padding: 2rem 1.5rem;
+            }
+            .image-row {
+                flex-direction: column;
             }
         }
     </style>
@@ -329,66 +345,90 @@
                 </a>
             </div>
 
-            <div class="nav-category">
-                <div class="category-title">Projects & Programs</div>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="panel-proj-4">
-                            <div>
-                                <span class="item-title-en">The Grammar of Agency</span>
-                                <span class="item-title-zh">能动性的语法</span>
-                            </div>
-                            <span class="item-year">2026</span>
-                        </a>
-                        <a class="nav-link" data-target="panel-proj-3">
-                            <div>
-                                <span class="item-title-en">Frames of Time</span>
-                                <span class="item-title-zh">时间之帧</span>
-                            </div>
-                            <span class="item-year">2025</span>
-                        </a>
-                        <a class="nav-link" data-target="panel-proj-2">
-                            <div>
-                                <span class="item-title-en">AI, Pan-Technology & Art</span>
-                                <span class="item-title-zh">AI，泛技术与艺术</span>
-                            </div>
-                            <span class="item-year">2021</span>
-                        </a>
-                        <a class="nav-link" data-target="panel-proj-1">
-                            <div>
-                                <span class="item-title-en">Doppelgänger Mirror</span>
-                                <span class="item-title-zh">二重身镜</span>
-                            </div>
-                            <span class="item-year">2020</span>
-                        </a>
-                    </li>
-                    
+            <div class="sidebar-scroll">
+                <div class="nav-category">
+                    <div class="category-title">Design Projects 设计项目</div>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a class="nav-link" data-target="panel-proj-3">
+                                <div>
+                                    <span class="item-title-en">The Grammar of Agency</span>
+                                    <span class="item-title-zh">能动性的语法</span>
+                                </div>
+                                <span class="item-year">2026</span>
+                            </a>
+                            <a class="nav-link" data-target="panel-proj-2">
+                                <div>
+                                    <span class="item-title-en">Frames of Time</span>
+                                    <span class="item-title-zh">时间之帧</span>
+                                </div>
+                                <span class="item-year">2025</span>
+                            </a>
+                            
+                            <a class="nav-link" data-target="panel-proj-1">
+                                <div>
+                                    <span class="item-title-en">Doppelgänger Mirror</span>
+                                    <span class="item-title-zh">二重身镜</span>
+                                </div>
+                                <span class="item-year">2020</span>
+                            </a>
+                        </li>
                     </ul>
-            </div>
+                </div>
 
-            <div class="nav-category nav-category-contact">
-                <div class="category-title">Contact</div>
+                <div class="nav-category">
+                    <div class="category-title">Marketing Strategy & Operations 市场策略与运营</div>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a class="nav-link" data-target="panel-proj-02">
+                                <div>
+                                    <span class="item-title-en">Social Media Marketing 中文媒体运营</span>
+                                    <span class="item-title-zh">Mazzoleni, London - Torino</span>
+                                </div>
+                                <span class="item-year">2023 - 2025</span>
+                            </a>
+                            <a class="nav-link" data-target="panel-proj-01">
+                                <div>
+                                    <span class="item-title-en">Public Education Programs 公共教育项目</span>
+                                    <span class="item-title-zh">West Bund Museum 西岸美术馆</span>
+                                </div>
+                                <span class="item-year">2021 - 2023</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-category">
+                    <div class="category-title nav-link-reset" data-target="panel-about" style="cursor: pointer;">
+                        About 关于
+                    </div>
+                </div>
+            </div> 
+
+            <div class="sidebar-footer">
+                <div class="nav-category">
+                    <div class="category-title">Contact 联系方式</div>
+                    <ul class="nav-list" style="margin-bottom: 0;">
+                        <li class="nav-item">
+                            <a href="mailto:eva.cheyiwen@gmail.com" class="nav-link">
+                                <div><span class="item-title-en">eva.cheyiwen@gmail.com</span></div>
+                            </a>
+                            <a href="https://instagram.com/earthboundeva" target="_blank" rel="noopener noreferrer" class="nav-link">
+                                <div><span class="item-title-en">@earthboundeva</span></div>
+                            </a>
+                            <a href="https://linkedin.com/in/cheyiwen" target="_blank" rel="noopener noreferrer" class="nav-link">
+                                <div><span class="item-title-en">linkedin.com/in/cheyiwen</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 
-                <div class="social-links-row">
-                    <a href="https://instagram.com/earthboundeva" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <a href="https://linkedin.com/in/cheyiwen" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
+                <div class="copyright-info">
+                    &copy; 2026 CHE YIWEN.<br>
+                    Licensed under CC BY-NC 4.0.<br>转载请注明来源，非商业用途。
                 </div>
             </div>
         </nav>
-
-
 
         <main class="content-area">
             
@@ -396,11 +436,26 @@
                 <div class="landing-bg-image" style="background-image: url('img/The Grammar of Agency_Hand_1.jpg');"></div>
             </div>
 
+            <div id="panel-about" class="content-panel">
+                <div class="content-body">
+                    <p>车艺文（1998年出生于浙江杭州）是一位跨学科体验设计师。她本科毕业于中国美术学院数字媒体设计专业，目前在维也纳应用艺术大学攻读跨学科策略硕士学位。</p>
+                    <p>在设计实验中，她擅长通过低技术与轻量级交互手段，敏锐地洞察并重塑日常生活中的互动关系。她热衷于打破事物固有的运行逻辑，创造出具有反常识与诗意的体验。通过这些幽默且引人深思的日常干预，车艺文展现了她以小见大的核心创作哲学——从最细微、最不起眼的交互切片中，剥离出关于人与物理世界关系的宏大叙事。</p>
+                    <p>在专业实践领域，她曾供职于上海西岸美术馆，从事公共教育项目的策划与运营。此外，她还与国内外多家画廊、美术馆及独立艺术家保持着紧密合作，在艺术市场运营、展览设计及跨媒介项目落地方面积累了丰富的行业经验。</p>
+                    <br>
+                    <p>Che Yiwen  (b.1998, Hangzhou, China) is an interdisciplinary experience designer. She holds a Bachelor’s degree in Digital Media Design from the China Academy of Art and is currently pursuing a Master’s degree in Cross-Disciplinary Strategies at the University of Applied Arts Vienna.</p>
+                    <p>In her design experiments, Yiwen utilizes low-tech and accessible interactive technologies to glean profound insights into everyday interactions. She excels at subverting the inherent logic of ordinary objects to create surprising, counter-intuitive experiences. Through these subtle, whimsical, yet thought-provoking interventions, Yiwen demonstrates her unique ability to see the macro through the micro—using small-scale, playful disruptions of the mundane to provoke broader reflections on our relationship with the physical world.</p>
+                    <p>Professionally, Yiwen has worked at the West Bund Museum in Shanghai, where she focused on the curation and operation of public education programs. Furthermore, she has collaborated with various domestic and international galleries, museums, and artists, acquiring extensive industry experience in art market operations, marketing, and exhibition design.</p>
+                </div>
+            </div>
 
-            <div id="panel-proj-4" class="content-panel">
+            <div id="panel-proj-3" class="content-panel">
                 <h2 class="content-title">The Grammar of Agency<br>能动性的语法</h2>
-                <div class="content-subtitle">A series of interactive installations<br>Dimensions variable<br>Contributing the <a href="https://hope4hope.at/">Group Exhibition <i>Hope 4 Hope: Cross Disciplinary Investigations </i></a>
-                    <br>Donau Festival, Krems an der Donau, 2026 </div>
+                <div class="content-subtitle">
+                    A series of interactive installations<br>
+                    Dimensions variable<br>
+                    Contributing the group exhibition <a href="https://hope4hope.at/"><i>Hope 4 Hope: Cross Disciplinary Investigations</i></a><br>
+                    Donau Festival, Krems an der Donau, 2026 
+                </div>
                 <div class="content-image standalone ratio-16x9" style="background-image: url('img/The Grammar of Agency_Hand_2.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="content-body">
                     <p>This collection of Interactive Installations comprises three subjects that step out of the passive role of being mere “objects.” They refuse to simply absorb a passing glance or wait to be looked at; instead, they actively extend an invitation for you to engage. Here, a hand reaches out to connect, the plant breaks its silence to speak with those who touch it, and time itself adjusts its pace to the physical weight you apply.</p>
@@ -410,20 +465,23 @@
                     <p><br>***<br>Technical Support 技术支持<br>Niklas Burger</p>
                 </div>
                 <div class="image-row">
-                    <div class="content-image ratio-2x3" style="background-image: url('img/The Grammar of Agency_Hand_4.jpg'); background-size: cover; background-position: center;"></div>
-                    <div class="content-image ratio-2x3" style="background-image: url('img/The Grammar of Agency_Hand_5.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/The Grammar of Agency_Hand_4.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/The Grammar of Agency_Hand_5.jpg'); background-size: cover; background-position: center;"></div>
                 </div>
                 <div class="content-image standalone ratio-3x2" style="background-image: url('img/The Grammar of Agency_Clock_2.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="image-row">
-                    <div class="content-image ratio-2x3" style="background-image: url('img/The Grammar of Agency_Clock_1.jpg'); background-size: cover; background-position: center;"></div>
-                    <div class="content-image ratio-2x3" style="background-image: url('img/The Grammar of Agency_Clock_3.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/The Grammar of Agency_Clock_1.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/The Grammar of Agency_Clock_3.jpg'); background-size: cover; background-position: center;"></div>
                 </div>
             </div>
 
-
-            <div id="panel-proj-3" class="content-panel">
+            <div id="panel-proj-2" class="content-panel">
                 <h2 class="content-title">Frames of Time<br>时间之帧</h2>
-                <div class="content-subtitle">Interactive installation<br>Dimensions variable<br>Angewandte Festival, Vienna, 2025</div>
+                <div class="content-subtitle">
+                    Interactive installation and prints<br>
+                    Dimensions variable<br>
+                    Angewandte Festival, Vienna, 2025
+                </div>
                 <div class="content-image standalone ratio-16x9" style="background-image: url('img/Frames of Time_1.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="content-body">
                     <p>Frames of Time captures suspended moments across timezones through layered transparent sheets. Each layer holds erased chat screenshots—only timestamps and “read” symbols remain. When you approach, gentle lights awaken these fragments, casting dancing shadows of vanished conversations. In this glow, a distant friend’s “Good morning” meets the sleepless night. Though words disappear, each illuminated <i>read</i> becomes a silent hand reaching across oceans. Your presence gathers these digital embraces, making absences resonate with the quiet comfort of knowing others are awake in the world’s scattered night.</p>
@@ -440,26 +498,16 @@
                     <div class="content-image ratio-3x4" style="background-image: url('img/Frames of Time_6.jpg'); background-size: cover; background-position: center;"></div>
                 </div>
             </div>
-
-
-            <div id="panel-proj-2" class="content-panel">
-                <h2 class="content-title">AI, Pan-Technology and Art<br>AI，泛技术与艺术</h2>
-                <div class="content-subtitle">Public Education Program<br> West Bund Museum, Shanghai, 2021</div>
-                <div class="content-image standalone ratio-16x9" style="background-image: url('img/ai pantech and art_banner.jpg'); background-size: cover; background-position: center;"></div>
-                <div class="content-body">
-                    <p>On the occasion of the 4th World AI Conference 2021, West Bund Museum, as one of the core venues of the Museum Mile, launched a public program—AI, Pan-Technology & Art. The program aims to showcase the crossover between art and technology in a multi-dimensional manner through the perspective of new media art, with a series of 12 events, including screenings, audio-visual performances, workshops, talks, along with School of Design & Innovation, China Academy of Art and Chronus Art Center, bring together distinguished scholars, curators and artists to discussion, inviting the public to dialogue and experience the new sensations about artificial intelligence and art.</p>
-                    <p>西岸美术馆作为西岸“美术馆大道”的核心场馆之一，在2021年第四届世界人工智能大会举办之际，演绎AI与ART交织的精彩篇章，推出双A系列活动“AI、泛技术与艺术”，以新媒体艺术为切入点，开展12场形式多样的活动，包含跨媒介影像、现场展演、工作坊与系列讲座等，多角度展示艺术与科技的跨界与交融，并与中国美术学院创新设计学院、CAC新时线媒体艺术中心联合知名学者、策展人、艺术家发起探讨，邀请公众一同与科技对话、与艺术同舞，感受人工智能与艺术双向赋能的全新体验。</p>
-                </div>
-                <div class="content-image" style="background-image: url('img/mirror_detail.jpg'); background-size: cover; background-position: center;"></div>
-                <div class="content-image" style="background-image: url('img/mirror2.jpg'); background-size: cover; background-position: center;"></div>
-            </div>
-
             
             <div id="panel-proj-1" class="content-panel">
                 <h2 class="content-title">Doppelgänger Mirror<br>二重身镜</h2>
-                <div class="content-subtitle">Graduation Project, China Academy of Art, Hangzhou, 2020</div>
-                <div class="content-image standalone ratio-3x2" style="background-image: url('img/Mirror_1.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="content-subtitle">
+                    Dimensions variable<br>
+                    Graduation Project, China Academy of Art, Hangzhou, 2020
+                </div>
+                <div class="content-image standalone ratio-16x9" style="background-image: url('img/Mirror_5.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="content-body">
+                    <p><a href="https://www.instagram.com/reel/DKzdB4KIneO/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="> <i>➥ Click to watch the demo video</i></a></p>
                     <p>Doppelgänger Mirror is an interactive kinetic installation that investigates the act of looking through a mirror that appears to look back. Drawing from folklore and psychoanalysis, the work evokes the notion of the doppelgänger—an invisible, often ominous double—to question how we observe and construct ourselves in contemporary digital times. Interaction begins simply: the viewer’s face is tracked and mirrored. But over time, the mirror develops an unpredictable rhythm, occasionally disrupting the synchronicity between gesture and response. In this shift, Doppelgänger Mirror transforms from a passive surface into an autonomous performer.</p>
                     <p>The work centers around a motorized mirror embedded in a transparent mechanical frame. Through face tracking and real-time servo control, the mirror responds to the viewer’s head movements—tilting, rotating, and shifting in depth—as if it possessed its own instinct to observe. Rather than reflecting a static image, the mirror acts as a living presence, mimicking or deflecting gestures in ways that are at times playful, at times unsettling.</p>
                     <p>By blurring the line between viewing and being viewed, reflection and reaction, Doppelgänger Mirror invites a reconsideration of the familiar gesture of looking into a mirror. It explores how subtle shifts in material, timing, and responsiveness can transform a common interface into a site of ambiguity, estrangement, and quiet confrontation.</p>
@@ -467,13 +515,50 @@
                     <p>《二重身镜》的核心是嵌于透明机械框架的电机驱动镜面。通过实时面部追踪与伺服控制，镜体随观者头部倾斜、旋转、进退，宛如觉醒的观察者。它拒斥静态倒影，以模仿或偏离的姿态构筑机械生命性，在戏谑与不安间挑战人类权威。</p>
                     <p>当观看与被观看的边界瓦解，作品迫使观者重审“照镜”这一仪式。通过材质异变与响应延迟，日常界面转化为自我对峙的场域——在这里，人与技术互为“二重身”，在无声角力中暴露数字时代的存在性焦虑。</p>
                 </div>
+                <div class="content-image standalone ratio-16x9" style="background-image: url('img/Mirror_4.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="content-image standalone ratio-3x2" style="background-image: url('img/Mirror_1.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="image-row">
-                    <div class="content-image ratio-2x3" style="background-image: url('img/Mirror_2.jpg'); background-size: cover; background-position: center;"></div>
-                    <div class="content-image ratio-2x3" style="background-image: url('img/Mirror_3.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/Mirror_2.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/Mirror_3.jpg'); background-size: cover; background-position: center;"></div>
                 </div>
             </div>
 
-            </main>
+            <div id="panel-proj-02" class="content-panel">
+                <h2 class="content-title">Mazzoleni, London - Torino<br>Social Media Marketing 中文媒体运营</h2>
+                <div class="content-subtitle">
+                    Social Media Marketing & PR<br>
+                    London - Torino, 2023 - 2025
+                </div>
+                
+                <div class="content-image standalone ratio-16x9" style="background-image: url('img/Mazzoleni_Banner.jpg'); background-size: cover; background-position: center;"></div>
+                
+                <div class="content-body">
+                    <p>During my tenure, I managed the Chinese social media marketing and public relations for Mazzoleni, a prestigious post-war Italian art gallery with spaces in London and Torino. My responsibilities encompassed content strategy, localized copywriting, and visual layout design for platforms including WeChat Official Account and Xiaohongshu (RED). Working closely with the curatorial and sales teams, I translated the gallery's narrative, exhibition updates, and art fair participations (e.g., Art Basel) for the Chinese-speaking audience, significantly enhancing brand awareness and engagement within the Asian art market.</p>
+                    
+                    <p>在此期间，我主要负责战后意大利当代艺术画廊 Mazzoleni（伦敦与都灵）的中文社交媒体运营与公共关系策划。主要工作包括微信公众号与小红书的内容矩阵搭建、本土化文案撰写及视觉排版设计。我与画廊的策展及销售团队紧密合作，将画廊的品牌叙事、展览动态及艺术博览会（如巴塞尔艺术展）等核心信息精准传达给中文受众，有效提升了画廊在亚洲艺术圈的品牌知名度与受众互动率。</p>
+                </div>
+                
+                <div class="image-row">
+                    <div class="content-image ratio-3x4" style="background-image: url('img/Mazzoleni_1.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="content-image ratio-3x4" style="background-image: url('img/Mazzoleni_2.jpg'); background-size: cover; background-position: center;"></div>
+                </div>
+                <div class="content-image standalone ratio-3x2" style="background-image: url('img/Mazzoleni_3.jpg'); background-size: cover; background-position: center;"></div>
+            </div>
+
+            <div id="panel-proj-01" class="content-panel">
+                <h2 class="content-title">AI, Pan-Technology and Art<br>AI，泛技术与艺术</h2>
+                <div class="content-subtitle">
+                    Public Education Program<br>
+                    West Bund Museum, Shanghai, 2021
+                </div>
+                <div class="content-image standalone ratio-16x9" style="background-image: url('img/ai pantech and art_banner.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="content-body">
+                    <p>On the occasion of the 4th World AI Conference 2021, West Bund Museum, as one of the core venues of the Museum Mile, launched a public program—AI, Pan-Technology & Art. The program aims to showcase the crossover between art and technology in a multi-dimensional manner through the perspective of new media art, with a series of 12 events, including screenings, audio-visual performances, workshops, talks, along with School of Design & Innovation, China Academy of Art and Chronus Art Center, bring together distinguished scholars, curators and artists to discussion, inviting the public to dialogue and experience the new sensations about artificial intelligence and art.</p>
+                    <p>西岸美术馆作为西岸“美术馆大道”的核心场馆之一，在2021年第四届世界人工智能大会举办之际，演绎AI与ART交织的精彩篇章，推出双A系列活动“AI、泛技术与艺术”，以新媒体艺术为切入点，开展12场形式多样的活动，包含跨媒介影像、现场展演、工作坊与系列讲座等，多角度展示艺术与科技的跨界与交融，并与中国美术学院创新设计学院、CAC新时线媒体艺术中心联合知名学者、策展人、艺术家发起探讨，邀请公众一同与科技对话、与艺术同舞，感受人工智能与艺术双向赋能的全新体验。</p>
+                </div>
+            </div>
+
+        </main>
     </div>
 
     <script>
@@ -491,15 +576,22 @@
                     targetPanel.classList.add('active');
                 }
                 
+                // 切换面板时页面自动回到顶部
                 document.querySelector('.content-area').scrollTop = 0;
             }
 
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
+                    // 如果链接是外链（含有 href 且不以 # 开头），则不阻止默认跳转事件
+                    if (link.hasAttribute('href') && !link.getAttribute('href').startsWith('#')) {
+                        return;
+                    }
                     e.preventDefault();
                     link.classList.add('active');
                     const targetId = link.getAttribute('data-target');
-                    switchPanel(targetId);
+                    if(targetId) {
+                        switchPanel(targetId);
+                    }
                 });
             });
 
